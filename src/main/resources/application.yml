@@ -2,10 +2,12 @@ spring:
   application:
     name: notification-api-service
   kafka:
-    bootstrap-servers: kafka:9092
+    bootstrap-servers: localhost:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
   datasource:
     url: jdbc:postgresql://localhost:5438/notifications
     username: root
@@ -19,3 +21,7 @@ spring:
 
 server:
   port: 8087
+
+jwt:
+  secret: secretkeyPasswordForAuth12312312312313213123123sdfsdf
+  life-time: 1800000

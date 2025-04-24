@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @Table(name = "notifications")
 public class Notification {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private String userId;
     private String type; // LIKE, COMMENT

@@ -25,3 +25,6 @@ server:
 jwt:
   secret: secretkeyPasswordForAuth12312312312313213123123sdfsdf
   life-time: 1800000
+
+feign:
+  url: localhost:8088/notification-processor

@@ -28,6 +28,10 @@ import java.util.stream.Stream;
 public class JwtService {
     @Value("${jwt.secret}")
     private String secretKey;
+    @Value("${spring.application.name}")
+    private String appName;
+    @Value("${jwt.life-time}")
+    private Long lifeTime;
 
     public Long getUserIdFromToken(String token) {
         return getClaimFromToken(token, claims -> claims.get("userId", Long.class));
@@ -197,6 +201,22 @@ public class JwtService {
                 .subject(username)
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + 20000))
+                .signWith(Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8)))
+                .compact();
+    }
+
+    public String generateDefaultToken() {
+        Map<String, Object> claims = new HashMap<>();
+
+        claims.put("username", "");
+        claims.put("roles", Stream.of("service")
+                .collect(Collectors.toSet()));
+
+        return Jwts.builder()
+                .claims(claims)
+                .subject(appName)
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + lifeTime))
                 .signWith(Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8)))
                 .compact();
     }

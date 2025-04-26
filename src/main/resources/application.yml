@@ -8,16 +8,6 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
         spring.json.add.type.headers: false
-  datasource:
-    url: jdbc:postgresql://localhost:5438/notifications
-    username: root
-    password: pass
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    database: POSTGRESQL
-    show-sql: true
-    hibernate:
-      ddl-auto: update
 
 server:
   port: 8087

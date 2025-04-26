@@ -1,19 +1,15 @@
 package com.example.notification_api_service.model;
 
-import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
-@Table(name = "notifications")
 public class Notification {
-    @Id
     private String id;
     private String userId;
     private String type; // LIKE, COMMENT

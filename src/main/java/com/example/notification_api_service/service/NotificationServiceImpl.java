@@ -3,7 +3,6 @@ package com.example.notification_api_service.service;
 import com.example.notification_api_service.model.NotificationEvent;
 import com.example.notification_api_service.model.NotificationRequest;
 import com.example.notification_api_service.model.NotificationResponse;
-import com.example.notification_api_service.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -14,7 +13,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class NotificationServiceImpl implements NotificationService{
     private final KafkaTemplate<String, NotificationEvent> kafkaTemplate;
-    private final NotificationRepository repository;
     @Override
     public NotificationResponse sendNotification(NotificationRequest request) {
 
